@@ -1875,6 +1875,33 @@ figure {
 }
 
 @media (max-width: 900px) {
+  .menubar__inner {
+    gap: 0.75rem;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand__text {
+    min-width: 0;
+  }
+
+  .brand__text strong,
+  .brand__text span {
+    white-space: nowrap;
+  }
+
+  .menubar__actions {
+    margin-left: auto;
+  }
+
+  .nav-toggle {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
   .nav {
     position: absolute;
     top: 100%;
