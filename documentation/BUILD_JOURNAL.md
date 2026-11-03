@@ -23,7 +23,7 @@ The existing portfolio lived at the repository root (`index.html`, `styles.css`,
 - Node.js 24.22.1 (used only for local browser testing)
 - Git 2.56.0
 - GitHub CLI was missing; installed `GitHub.cli` 2.103.3 with winget, then authenticated as `TheMukeshDev` through the browser device flow.
-- AWS CLI 2.39.3, profile `portfolio`, account `584998371788`, region `ap-southeast-2`
+- AWS CLI 2.39.3, profile `portfolio`, account `<AWS_ACCOUNT_ID>`, region `ap-southeast-2`
 - `aws amplify list-apps` returned no existing apps
 - Plan: FREE Tier, $120 credits, active until 2027-05-03
 

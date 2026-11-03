@@ -554,7 +554,7 @@
 
     writeLine("builder@os:~$ " + value, "cmd");
     const name = value.toLowerCase();
-    const command = commands[name];
+    const command = Object.prototype.hasOwnProperty.call(commands, name) ? commands[name] : null;
 
     if (!command) {
       writeLine('command not found: "' + value + '"', "err");
@@ -568,8 +568,10 @@
   }
 
   function submitCommand(raw) {
-    if (!raw.trim()) return;
-    if (!commands[raw.trim().toLowerCase()] || raw.trim().toLowerCase() !== "reset") {
+    const trimmed = raw.trim();
+    if (!trimmed) return;
+    const name = trimmed.toLowerCase();
+    if (!Object.prototype.hasOwnProperty.call(commands, name) || name !== "reset") {
       history.push(raw);
     }
     historyIndex = history.length;

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Builder OS mark">
+  <rect width="64" height="64" rx="14" fill="#0b101c"/>
+  <rect x="9" y="12" width="46" height="40" rx="7" fill="#0e1422" stroke="#2f6fed" stroke-width="2.5"/>
+  <path d="M9 22h46" stroke="#1b2436" stroke-width="2"/>
+  <circle cx="17" cy="17" r="2" fill="#5b9dff"/>
+  <circle cx="24" cy="17" r="2" fill="#a78bfa"/>
+  <path d="M25 32l6 6-6 6" fill="none" stroke="#5b9dff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M36 44h11" fill="none" stroke="#a78bfa" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

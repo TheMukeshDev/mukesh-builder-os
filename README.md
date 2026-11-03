@@ -34,8 +34,17 @@ builder-os/
 ├── index.html
 ├── styles.css
 ├── script.js
+├── favicon.ico
+├── favicon.svg
+├── apple-touch-icon.png
+├── amplify.yml
+├── deploy.ps1
+├── deploy.sh
 ├── assets/
 │   ├── favicon.svg
+│   ├── favicon.ico
+│   ├── favicon.png
+│   ├── apple-touch-icon.png
 │   ├── og-cover.svg
 │   ├── og-cover.png
 │   ├── profile.jpeg
@@ -51,6 +60,7 @@ builder-os/
 │       ├── portfolio-desktop.png
 │       ├── portfolio-mobile.png
 │       └── portfolio-projects.png
+├── .gitignore
 └── README.md
 ```
 
@@ -68,13 +78,23 @@ The dialog and console work from `file://` as well; serving the folder is closer
 
 ## Deployment
 
-The production site is a static ZIP uploaded to AWS Amplify Hosting. See [documentation/DEPLOYMENT.md](documentation/DEPLOYMENT.md) for the exact commands, app identifiers, verification steps, and cleanup notes.
+The production site can be deployed to AWS Amplify Hosting via the automated deploy script or via Git-connected hosting using `amplify.yml`:
 
-Deployment is intentionally manual:
+```powershell
+.\deploy.ps1
+```
 
-- Amplify is not connected to the GitHub repository.
+Or on macOS/Linux:
+
+```bash
+chmod +x deploy.sh && ./deploy.sh
+```
+
+See [documentation/DEPLOYMENT.md](documentation/DEPLOYMENT.md) for the manual commands, app identifiers, verification steps, and cleanup notes.
+
+- `amplify.yml` is included for direct Git-connected CI/CD deployments.
 - No build command, framework, or server runtime is required.
-- The ZIP contains `index.html`, `styles.css`, `script.js`, and `assets/`.
+- The deploy scripts package `index.html`, `styles.css`, `script.js`, favicon files, and `assets/` with POSIX forward slashes.
 
 ## Content and verification
 

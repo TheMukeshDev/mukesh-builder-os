@@ -3,7 +3,7 @@
 **Target:** AWS Amplify Hosting, static site, manual ZIP deployment  
 **Region:** `ap-southeast-2`  
 **AWS profile:** `portfolio`  
-**Account:** `584998371788`  
+**Account:** `<AWS_ACCOUNT_ID>`  
 **App name:** `mukesh-builder-os`  
 **Branch:** `main`
 
@@ -17,12 +17,32 @@ Upload only what the static site needs:
 index.html
 styles.css
 script.js
+favicon.ico
+favicon.svg
+apple-touch-icon.png
+amplify.yml
 assets/
 ```
 
 `README.md`, `documentation/`, `.gitignore`, and `.git` are not deployed.
 
-## Deploy steps (AWS CLI)
+## Quick Automated Deploy
+
+Run the automated deploy script from the repository root:
+
+```powershell
+.\deploy.ps1
+```
+
+Or on macOS/Linux:
+
+```bash
+chmod +x deploy.sh && ./deploy.sh
+```
+
+The script automatically verifies credentials, packages all assets ensuring POSIX forward slashes, uploads the deployment package, and monitors the job status until it succeeds.
+
+## Deploy steps (Manual AWS CLI)
 
 Set the CLI path for this machine and keep output UTF-8 safe:
 
@@ -101,7 +121,7 @@ Recorded results:
 | Item | Value |
 | --- | --- |
 | App ID | `d2uq7615twtp7h` |
-| App ARN | `arn:aws:amplify:ap-southeast-2:584998371788:apps/d2uq7615twtp7h` |
+| App ARN | `arn:aws:amplify:ap-southeast-2:<AWS_ACCOUNT_ID>:apps/d2uq7615twtp7h` |
 | Default domain | `d2uq7615twtp7h.amplifyapp.com` |
 | Live URL | https://main.d2uq7615twtp7h.amplifyapp.com/ |
 | Branch | `main` |
