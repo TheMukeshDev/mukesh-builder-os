@@ -105,13 +105,13 @@ Recorded results:
 | Default domain | `d2uq7615twtp7h.amplifyapp.com` |
 | Live URL | https://main.d2uq7615twtp7h.amplifyapp.com/ |
 | Branch | `main` |
-| Deploy job IDs | `1` (initial), `2` (final metadata) |
-| Deployed at | 3 November 2026, 11:42 IST |
+| Deploy job IDs | `1` (initial), `2` (metadata), `3` (creative-feature polish) |
+| Deployed at | 3 November 2026, 11:42 IST; final job `3` at 12:36 IST |
 | Initial status | `SUCCEED` |
-| Final status | `SUCCEED` (job `2`) |
+| Final status | `SUCCEED` (job `3`, about 9 seconds) |
 | Verified live URL | 200 over HTTPS; S3 origin behind CloudFront |
 
-Both deployments succeeded in about three seconds each. No source change followed job `2`, so no further deployment was needed. Assets were verified individually after deployment:
+All three deployments succeeded. Job `3` carries the visible creative-feature hint, first-person launch copy, personal console commands, and the footer note. Assets were verified individually after deployment:
 
 | Asset | Status |
 | --- | --- |
@@ -124,6 +124,8 @@ Both deployments succeeded in about three seconds each. No source change followe
 | `/assets/og-cover.png` | 200, `image/png` |
 
 Live browser checks passed with no console errors. axe-core 4.10.2 reported 0 violations on the page (41 passes), 0 with the Builder OS dialog open, and 0 with the mobile menu open. `color-contrast` is marked incomplete where decorative gradients prevent automated sampling; the underlying color tokens were checked manually and pass AA.
+
+Portfolio screenshots were captured from the final live deployment into `documentation/screenshots/`. The Amplify console screenshots are captured by the account owner; they are not fabricated.
 
 ## GitHub
 

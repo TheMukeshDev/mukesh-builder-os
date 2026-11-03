@@ -35,7 +35,7 @@ The design is a dark "operating system" workspace rather than a generic card por
 - Sections presented as windows with path labels (`~/about`, `~/tech-arsenal`, `~/project-lab`, and so on).
 - Blue and violet accents on a near-black navy background, with a subtle grid.
 - A portrait framed as a file window (`builder.jpg`) plus a compact `sys.info` panel.
-- A one-line launch strip for the optional Builder OS.
+- A visible launch strip labelled **“Creative feature · optional”**, explaining the Builder OS in first person before offering the boot button.
 
 The goal was a recognisable identity without trading away reading comfort. Body copy stays in a normal sans-serif; monospace is reserved for paths, labels, and console text.
 
@@ -60,7 +60,7 @@ One HTML file with: skip link, sticky menu bar, hero, About, Tech Arsenal, Proje
 - Project Lab renders mission briefs from a small data object; all copy matches the static page.
 - Tech Arsenal filters six categories.
 - Community Hub is static, verified content.
-- Secret Console supports `help`, `about`, `projects`, `skills`, `community`, `achievements`, `learning`, `reset`; ↑/↓ history; Enter to run; visible reset button; no fake system operations.
+- Secret Console supports `help`, `about`, `whoami`, `motto`, `now`, `projects`, `skills`, `community`, `achievements`, `learning`, `reset`; ↑/↓ history; Enter to run; visible reset button; no fake system operations. `whoami`, `motto`, and `now` answer in Mukesh's voice; `sudo` is a small hidden joke.
 - Esc and the close button close the dialog. Focus returns to the opening button.
 - Opening the OS does not remove the static page; the OS is optional and clearly explained.
 
@@ -91,6 +91,7 @@ Verified:
 - Button contrast meets AA after changing the primary gradient's bottom stop.
 - axe-core 4.10.2 against the live page: 0 WCAG 2.2 A/AA violations, 41 passes. The report lists only `color-contrast` as "incomplete" because of decorative gradients; token-level contrast was checked manually (all tested pairs pass AA).
 - axe-core against the open dialog (console and project states) and the open mobile menu: 0 violations. One transient contrast flag on the launch-band button disappeared on re-run; its computed colors are `#c3c9d6` on `#0e1422` (well above AA).
+- After the creative-feature copy change, live checks confirmed the first-person hint, new `whoami`/`motto`/`now`/`sudo` console responses, focus return, and no overflow at 390 px. Screenshots were captured from the deployed site.
 
 Issues found and fixed during the pass:
 
@@ -103,6 +104,7 @@ Issues found and fixed during the pass:
 
 - `assets/og-cover.svg` is the 1200 × 630 social card source.
 - `assets/og-cover.png` is a real 1200 × 630 raster capture of that card, generated in headless Chrome (367,208 bytes), not a stock image.
+- `documentation/screenshots/` contains real captures of the live site: desktop hero with the creative-feature hint, projects, mobile, and Builder OS. AWS console screenshots are added by the account owner.
 - No AI-generated images are used. The portrait is the supplied photograph.
 
 ## 8. Deployment
@@ -113,10 +115,11 @@ Deployment is a manual ZIP upload to AWS Amplify Hosting in `ap-southeast-2`, de
 - App ID: `d2uq7615twtp7h`
 - Branch: `main`
 - Live URL: https://main.d2uq7615twtp7h.amplifyapp.com/
-- Initial deployment job: `1` — `SUCCEED` in roughly three seconds
+- Deployment jobs: `1` (initial), `2` (canonical/Open Graph metadata), `3` (creative-feature hint and console polish) — all `SUCCEED`
+- Final deployment: job `3`, started 3 November 2026 at 12:36:45 IST, completed in about 9 seconds
 - Root document and every static asset returned 200 over HTTPS
 
-The app was created in the account's assigned Region, with no custom domain and no other AWS resources. GitHub remains the source of truth; the ZIP is built from the repo's site files and uploaded manually. A second deployment carries the final canonical/Open Graph metadata.
+The app was created in the account's assigned Region, with no custom domain and no other AWS resources. GitHub remains the source of truth; the ZIP is built from the repo's site files and uploaded manually.
 
 One packaging detail mattered: Windows `Compress-Archive` produced backslash-separated ZIP entries in the first attempt. The final ZIP was rebuilt with Windows `tar -a`, which stores `assets/...` with forward slashes, the format static hosts expect.
 

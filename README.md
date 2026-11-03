@@ -18,7 +18,7 @@ The site combines a straightforward, readable portfolio with an optional desktop
 - Community & Achievements: SyntaxClash 2026, RIFT Series, shipped AI applications, and leadership roles at Tech Hub BBS, NEXORA E-Cell, GDG Prayagraj, AWS SBCL, and GeeksforGeeks.
 - Learning Journey: current goals marked in progress.
 - Contact: email, LinkedIn, GitHub, resume, location.
-- Builder OS dialog: keyboard-accessible tabs and apps, plus a console with `help`, `about`, `projects`, `skills`, `community`, `achievements`, `learning`, `reset`, command history, and a visible reset button.
+- Builder OS dialog: a visible “Creative feature · optional” launch strip, keyboard-accessible tabs and apps, plus a console with `help`, `about`, `whoami`, `motto`, `now`, `projects`, `skills`, `community`, `achievements`, `learning`, `reset`, command history, and a visible reset button.
 
 ## Technology
 
@@ -44,7 +44,13 @@ builder-os/
 │   ├── BUILD_JOURNAL.md
 │   ├── CONTENT_VERIFICATION.md
 │   ├── DEPLOYMENT.md
-│   └── REFLECTION.md
+│   ├── REFLECTION.md
+│   ├── SUBMISSION.md
+│   └── screenshots/
+│       ├── portfolio-builder-os.png
+│       ├── portfolio-desktop.png
+│       ├── portfolio-mobile.png
+│       └── portfolio-projects.png
 └── README.md
 ```
 
@@ -74,7 +80,7 @@ Deployment is intentionally manual:
 
 Every outbound link was checked before publishing. The project stacks are shown as **"Not specified in source material"** because the supplied profile material did not document them; nothing was inferred from a hosting URL. Documentation links that returned 404 were omitted rather than published broken.
 
-Details: [documentation/CONTENT_VERIFICATION.md](documentation/CONTENT_VERIFICATION.md).
+Details: [documentation/CONTENT_VERIFICATION.md](documentation/CONTENT_VERIFICATION.md). The Builder Center submission draft, AWS-service notes, screenshot map, and challenge checklist are in [documentation/SUBMISSION.md](documentation/SUBMISSION.md).
 
 ## Accessibility
 
@@ -92,7 +98,8 @@ Details: [documentation/CONTENT_VERIFICATION.md](documentation/CONTENT_VERIFICAT
 - **Stacks:** not specified by the source material; the UI says so per project.
 - **Docs links:** two documentation URLs returned 404 and are deliberately not linked.
 - **PharmaGuard:** not included as a featured project, per direction.
-- **AWS:** one Amplify app in the project's assigned Region; no other AWS resources are required.
+- **AWS:** one Amplify app in the project's assigned Region; Amplify serves the static site through its managed S3 origin and CloudFront. No other AWS resources are required.
+- **Submission:** four live-site screenshots are included; the Amplify console screenshots must be captured by the account owner before the Builder Center project is published.
 
 ## Ownership
 

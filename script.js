@@ -462,6 +462,9 @@
       [
         "help          this list",
         "about         who I am",
+        "whoami        the short version",
+        "motto         the line I keep coming back to",
+        "now           what I am focused on",
         "projects      project lab briefs",
         "skills        tech arsenal",
         "community     communities and leadership",
@@ -478,6 +481,25 @@
       writeLine("B.Tech CSE, 2nd year · BBSCET, Prayagraj.");
       writeLine("Focus: Python, Flask, AI applications, and automation.");
       writeLine("Community: Tech Hub BBS, NEXORA, GDG Prayagraj, AWS SBCL.", "dim");
+    },
+    whoami: function () {
+      writeLine("mukesh", "cmd");
+      writeLine("Backend developer, AI app builder, community organizer.", "ok");
+      writeLine("Happiest when a messy idea turns into something people can actually use.", "dim");
+    },
+    motto: function () {
+      writeLine("Beyond code. Into creation.", "cmd");
+      writeLine("It sits at the top of this page because it is the part I mean.", "dim");
+    },
+    now: function () {
+      writeLine("currently", "accent");
+      writeLine("Second-year B.Tech CSE at BBSCET, Prayagraj.");
+      writeLine("Learning C++, DSA, React, MERN, and AI agents.");
+      writeLine("Open to internships — email is the fastest route.", "dim");
+    },
+    sudo: function () {
+      writeLine("Nice try. This console has no root access.", "err");
+      writeLine("Try \"motto\" instead — it is more useful anyway.", "dim");
     },
     projects: function () {
       writeLine("project lab / 3 missions", "accent");
