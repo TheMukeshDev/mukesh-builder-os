@@ -4,7 +4,7 @@ A personal developer portfolio for **Mukesh Kumar**, built for the AWS Builder C
 
 The site combines a straightforward, readable portfolio with an optional desktop-style **Builder OS** layer: four small apps (Project Lab, Tech Arsenal, Community Hub, Secret Console) that let visitors explore the same verified content in a different way. The OS is a bonus, never a gate — every project, link, and contact detail is available on the page without opening it.
 
-- **Live site:** LIVE_URL_PENDING
+- **Live site:** https://main.d2uq7615twtp7h.amplifyapp.com/
 - **Repository:** https://github.com/TheMukeshDev/mukesh-builder-os
 - **Author:** Mukesh Kumar — [GitHub](https://github.com/TheMukeshDev) · [LinkedIn](https://linkedin.com/in/themukeshdev) · [Email](mailto:itzcodermukesh@gmail.com)
 - **Region:** `ap-southeast-2` (AWS Amplify Hosting, manual ZIP deployment)
@@ -85,6 +85,7 @@ Details: [documentation/CONTENT_VERIFICATION.md](documentation/CONTENT_VERIFICAT
 - Responsive at 320 px and up; no horizontal overflow in tested viewports.
 - `prefers-reduced-motion` respected: reveals appear immediately and animations are effectively disabled.
 - Color contrast checked against WCAG AA for body text, muted text, labels, buttons, and console states.
+- axe-core 4.10.2 on the live page: 0 WCAG 2.2 A/AA violations (41 passes); 0 violations with the Builder OS dialog and mobile menu open.
 
 ## Project notes
 

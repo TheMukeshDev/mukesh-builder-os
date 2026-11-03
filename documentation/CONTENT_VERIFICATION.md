@@ -69,4 +69,4 @@ No additional numbers, dates, employers, clients, testimonials, or credentials w
 
 - Project stacks are unknown in the supplied material. This is visible in the UI, not hidden.
 - The site does not claim AWS certification, years of experience, or production scale.
-- The AWS console screenshots are captured by the account owner; none are mocked.
+- AWS console screenshots are to be supplied by the account owner from the live app; none are mocked or substituted with stock images.

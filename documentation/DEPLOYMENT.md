@@ -50,22 +50,21 @@ $aws = "C:\Users\ACER\AppData\Local\Programs\Amazon\AWSCLIV2\aws.exe"
    & $aws amplify create-branch --app-id <APP_ID> --branch-name main --region ap-southeast-2 --profile portfolio
    ```
 
-4. Create a deployment job and capture `jobId` and `zipUploadUrl`:
+4. Build the ZIP at the site root (no top-level folder). Use `tar -a`, not `Compress-Archive`: the latter can write backslash ZIP entries:
 
    ```powershell
-   & $aws amplify create-deployment --app-id <APP_ID> --branch-name main --region ap-southeast-2 --profile portfolio
+   tar -a -c -f ..\builder-os-site.zip index.html styles.css script.js assets
    ```
 
-5. Build the ZIP at the site root (no top-level folder):
-
-   ```powershell
-   Compress-Archive -Path index.html,styles.css,script.js,assets -DestinationPath ..\builder-os-site.zip -Force
-   ```
-
-6. Upload the ZIP to the presigned URL returned in step 4:
+5. Create a deployment job and keep the returned object:
 
    ```powershell
    $deployment = & $aws amplify create-deployment --app-id <APP_ID> --branch-name main --region ap-southeast-2 --profile portfolio | ConvertFrom-Json
+   ```
+
+6. Upload the ZIP to that job's presigned URL:
+
+   ```powershell
    Invoke-RestMethod -Method Put -InFile ..\builder-os-site.zip -ContentType "application/zip" -Uri $deployment.zipUploadUrl
    ```
 
@@ -86,27 +85,45 @@ $aws = "C:\Users\ACER\AppData\Local\Programs\Amazon\AWSCLIV2\aws.exe"
 
 ## Post-deploy verification
 
-- [ ] URL returns 200 over HTTPS
-- [ ] CSS, JavaScript, portrait, resume, and favicon load
-- [ ] Resume downloads as a PDF
-- [ ] All seven outbound links return 200
-- [ ] Projects, learning, community, and contact render without JavaScript errors
-- [ ] Builder OS opens, tabs work, console commands work, Esc closes
-- [ ] Mobile widths 390 px and 320 px have no horizontal overflow
-- [ ] `og:url` and `og:image` point at the live HTTPS URL and cover image
-- [ ] Lighthouse/axe pass (manual if no local tool available)
-- [ ] No console errors in the live page
+- [x] URL returns 200 over HTTPS
+- [x] CSS, JavaScript, portrait, resume, and favicon load
+- [x] Resume downloads as a PDF
+- [x] All seven outbound links return 200
+- [x] Projects, learning, community, and contact render without JavaScript errors
+- [x] Builder OS opens, tabs work, console commands work, Esc closes
+- [x] Mobile widths 390 px and 320 px have no horizontal overflow
+- [x] `og:url` and `og:image` point at the live HTTPS URL and cover image
+- [x] axe-core 4.10.2 scan: 0 WCAG 2.2 A/AA violations (Lighthouse not run)
+- [x] No console errors in the live page
 
-Record actual results here after the deploy:
+Recorded results:
 
 | Item | Value |
 | --- | --- |
-| App ID | `PENDING` |
-| Default domain | `PENDING` |
-| Deploy job ID | `PENDING` |
-| Deployed at | `PENDING` |
-| Final status | `PENDING` |
-| Verified live URL | `PENDING` |
+| App ID | `d2uq7615twtp7h` |
+| App ARN | `arn:aws:amplify:ap-southeast-2:584998371788:apps/d2uq7615twtp7h` |
+| Default domain | `d2uq7615twtp7h.amplifyapp.com` |
+| Live URL | https://main.d2uq7615twtp7h.amplifyapp.com/ |
+| Branch | `main` |
+| Deploy job IDs | `1` (initial), `2` (final metadata) |
+| Deployed at | 3 November 2026, 11:42 IST |
+| Initial status | `SUCCEED` |
+| Final status | `SUCCEED` (job `2`) |
+| Verified live URL | 200 over HTTPS; S3 origin behind CloudFront |
+
+Both deployments succeeded in about three seconds each. No source change followed job `2`, so no further deployment was needed. Assets were verified individually after deployment:
+
+| Asset | Status |
+| --- | --- |
+| `/index.html` | 200 |
+| `/styles.css` | 200, `text/css` |
+| `/script.js` | 200, `text/javascript` |
+| `/assets/profile.jpeg` | 200, `image/jpeg` |
+| `/assets/resume.pdf` | 200, `application/pdf` |
+| `/assets/favicon.svg` | 200, `image/svg+xml` |
+| `/assets/og-cover.png` | 200, `image/png` |
+
+Live browser checks passed with no console errors. axe-core 4.10.2 reported 0 violations on the page (41 passes), 0 with the Builder OS dialog open, and 0 with the mobile menu open. `color-contrast` is marked incomplete where decorative gradients prevent automated sampling; the underlying color tokens were checked manually and pass AA.
 
 ## GitHub
 

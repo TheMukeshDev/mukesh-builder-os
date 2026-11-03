@@ -46,7 +46,7 @@ The goal was a recognisable identity without trading away reading comfort. Body 
 - **PharmaGuard:** referenced only as hackathon work inside the RIFT Series achievement; not featured as a project.
 - **Learning:** six areas marked "in progress" — C++ & DSA, React, MERN, Core CS, backend system design, AI agents. No percentage bars.
 - **Links:** the seven outbound URLs used by the site were rechecked with a browser user agent on 3 November 2026 and all returned 200. LinkedIn's earlier HEAD request returned 403 to a bot-style request, but a GET with a browser user agent returned 200.
-- **Screenshots:** AWS console screenshots are captured by the account owner, not fabricated or substituted with stock images.
+- **Screenshots:** AWS console screenshots are to be supplied by the account owner from the live app, not fabricated or substituted with stock images.
 
 ## 5. Implementation
 
@@ -89,6 +89,8 @@ Verified:
 - Reveals complete after scrolling; reduced-motion mode shows all content immediately.
 - Tap targets for nav toggle, close, missions, tabs, console Run, and Reset were checked; small controls are at least 28 px high.
 - Button contrast meets AA after changing the primary gradient's bottom stop.
+- axe-core 4.10.2 against the live page: 0 WCAG 2.2 A/AA violations, 41 passes. The report lists only `color-contrast` as "incomplete" because of decorative gradients; token-level contrast was checked manually (all tested pairs pass AA).
+- axe-core against the open dialog (console and project states) and the open mobile menu: 0 violations. One transient contrast flag on the launch-band button disappeared on re-run; its computed colors are `#c3c9d6` on `#0e1422` (well above AA).
 
 Issues found and fixed during the pass:
 
@@ -105,7 +107,18 @@ Issues found and fixed during the pass:
 
 ## 8. Deployment
 
-Deployment is a manual ZIP upload to AWS Amplify Hosting in `ap-southeast-2`, deliberately not connected to the GitHub build pipeline. The exact app ID, URL, deployment job, and verification results are recorded in `DEPLOYMENT.md` after the deploy completes. GitHub remains the source of truth.
+Deployment is a manual ZIP upload to AWS Amplify Hosting in `ap-southeast-2`, deliberately not connected to the GitHub build pipeline.
+
+- Amplify app: `mukesh-builder-os`
+- App ID: `d2uq7615twtp7h`
+- Branch: `main`
+- Live URL: https://main.d2uq7615twtp7h.amplifyapp.com/
+- Initial deployment job: `1` — `SUCCEED` in roughly three seconds
+- Root document and every static asset returned 200 over HTTPS
+
+The app was created in the account's assigned Region, with no custom domain and no other AWS resources. GitHub remains the source of truth; the ZIP is built from the repo's site files and uploaded manually. A second deployment carries the final canonical/Open Graph metadata.
+
+One packaging detail mattered: Windows `Compress-Archive` produced backslash-separated ZIP entries in the first attempt. The final ZIP was rebuilt with Windows `tar -a`, which stores `assets/...` with forward slashes, the format static hosts expect.
 
 ## 9. What was left out
 
